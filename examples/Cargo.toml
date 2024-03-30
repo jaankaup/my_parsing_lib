@@ -11,3 +11,8 @@ edition = "2021"
 serde.workspace = true
 serde_json.workspace = true
 typify.workspace = true
+json.workspace = true
+
+[[example]]
+name = "block_test"
+path = "block_test/src/main.rs"
