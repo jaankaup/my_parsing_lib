@@ -3,6 +3,18 @@ use std::fs::File;
 use std::io::{BufReader, Read, BufRead};
 use std::error::Error;
 use std::path::Path;
+// use std::{error::Error, fmt::Debug};
+use thiserror::Error;
+
+#[derive(Error, Debug)]
+pub enum SourceIndexerError {
+    #[error("Malformed input. There are more `{0}` characters than `{1}` characters")]
+    EndCharError(char, char),
+
+    #[error("The input is malformed. Odd number of `{0}` and `{1}` pairs.")]
+    OddNumberError(char, char),
+
+}
 
 pub struct SourceIndexer {
 
@@ -20,7 +32,7 @@ impl SourceIndexer {
         }
     }
 
-    pub fn seek_block(&self, input_str: &String, start: char, end: char) -> Vec<(u64, u64)> {
+    pub fn seek_block(&self, input_str: &String, start: char, end: char) -> Result<Vec<(u64, u64)>, SourceIndexerError> {
 
         let mut start_index = 0; 
         let mut end_index = 0; 
@@ -37,7 +49,7 @@ impl SourceIndexer {
                 depth += 1;
             }
             else if c.1 == end {
-                if depth == 0 { panic!("The input is malformed. There are more {:?} characters than {:?} characters.", end, start); }
+                if depth == 0 { return Err(SourceIndexerError::EndCharError( start, end)); }
                 depth -= 1;
                 // An enclosing char found.
                 if depth == 0 {
@@ -51,10 +63,10 @@ impl SourceIndexer {
         }
 
         if depth != 0 {
-            panic!("The input is malformed. Odd number of {:?} and {:?} pairs.", start, end);
+            return Err(SourceIndexerError::OddNumberError(end, start)); 
         }
 
-        result
+        Ok(result)
     }
 }
 

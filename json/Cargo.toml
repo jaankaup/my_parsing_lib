@@ -11,3 +11,4 @@ edition = "2021"
 serde.workspace = true
 serde_json.workspace = true
 typify.workspace = true
+thiserror.workspace = true
