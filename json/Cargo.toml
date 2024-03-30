@@ -1,0 +1,13 @@
+[package]
+name = "json"
+version = "0.1.0"
+authors = ["jaankaup <janne.kauppinen4321@.fi>"]
+edition = "2021"
+
+[lib]
+
+[dependencies]
+
+serde.workspace = true
+serde_json.workspace = true
+typify.workspace = true
