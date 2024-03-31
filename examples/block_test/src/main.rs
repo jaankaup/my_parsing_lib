@@ -2,7 +2,7 @@ use quick_xml::name::QName;
 use json::misc::{
     load_from_file,
     seek_block,
-    seek_xml_block
+    seek_xml_blocks
 };
 
 pub fn main() {
@@ -14,5 +14,5 @@ pub fn main() {
     let source_xml = load_from_file(String::from("punamusta_tuho.dek")).unwrap(); 
     // let source_xml = load_from_file(String::from("puna_kakka.dek")).unwrap(); 
     let tags = vec![(QName(b"deck"), 0)];
-    seek_xml_block(&source_xml, &tags);
+    seek_xml_blocks(&source_xml, &tags);
 }

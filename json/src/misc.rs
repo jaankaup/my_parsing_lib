@@ -63,16 +63,15 @@ pub fn seek_xml_blocks(input_str: &String, tags: &Vec<(QName, u32)>) {
     let mut reader = Reader::from_str(input_str);
     reader.trim_text(true);
 
-    let mut buffer = Vec::<u8>::new();
     let mut buffer_position = reader.buffer_position();
     loop {
-        match reader.read_event_into(&mut buffer).unwrap() {
+        match reader.read_event().unwrap() {
             Event::Start(e) => {
                 for x in tags {
                     if e.name().as_ref() == x.0.local_name().as_ref() {
 
                         let a = buffer_position;
-                        let mut span = reader.read_to_end(x.0).unwrap();
+                        let _ = reader.read_to_end(x.0).unwrap();
                         buffer_position = reader.buffer_position();
                         println!("{:?}", input_str[a..buffer_position].to_string());
                         break;
