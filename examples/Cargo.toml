@@ -12,6 +12,7 @@ serde.workspace = true
 serde_json.workspace = true
 typify.workspace = true
 json.workspace = true
+quick-xml.workspace = true
 
 [[example]]
 name = "block_test"
