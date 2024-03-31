@@ -13,6 +13,6 @@ pub fn main() {
 
     let source_xml = load_from_file(String::from("punamusta_tuho.dek")).unwrap(); 
     // let source_xml = load_from_file(String::from("puna_kakka.dek")).unwrap(); 
-    let tags = vec![(QName(b"deck"), 0)];
+    let tags = vec![(QName(b"card"), 0)];
     seek_xml_blocks(&source_xml, &tags);
 }

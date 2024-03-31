@@ -70,6 +70,10 @@ pub fn seek_xml_blocks(input_str: &String, tags: &Vec<(QName, u32)>) {
                 for x in tags {
                     if e.name().as_ref() == x.0.local_name().as_ref() {
 
+                        // The tag name lengt + '<' + '>' + attributes len.
+                        let start_offset = e.name().0.len() + e.attributes_raw().len() + 2;
+                        buffer_position = reader.buffer_position() - start_offset;
+                        println!("Buffer position {:?}", buffer_position);
                         let a = buffer_position;
                         let _ = reader.read_to_end(x.0).unwrap();
                         buffer_position = reader.buffer_position();
