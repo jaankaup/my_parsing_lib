@@ -8,12 +8,42 @@ edition = "2021"
 
 [dependencies]
 
+# Parsing
 serde.workspace = true
 serde_json.workspace = true
 typify.workspace = true
 json.workspace = true
 quick-xml.workspace = true
 
+# Websockets
+tokio.workspace = true
+anyhow.workspace = true
+fastwebsockets.workspace = true
+hyper.workspace = true
+hyper-util.workspace = true
+http-body-util.workspace = true
+tokio-tungstenite.workspace = true
+futures-channel.workspace = true
+futures-util.workspace = true
+url.workspace = true
+
+
 [[example]]
 name = "block_test"
 path = "block_test/src/main.rs"
+
+[[example]]
+name = "json_schema"
+path = "json_schema/src/main.rs"
+
+[[example]]
+name = "ws"
+path = "ws/src/main.rs"
+
+[[example]]
+name = "tungstenite_client"
+path = "tungstenite/src/main_client.rs"
+
+[[example]]
+name = "tungstenite_server"
+path = "tungstenite/src/main_server.rs"

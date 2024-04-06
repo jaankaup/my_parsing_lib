@@ -4,12 +4,10 @@ use std::fs::File;
 use std::io::{BufReader, Read, BufRead};
 use std::error::Error;
 use std::path::Path;
-// use std::{error::Error, fmt::Debug};
 use thiserror::Error;
 use quick_xml::{
     Reader,
 };
-// use quick_xml::de::Deserializer;
 use quick_xml::de::Deserializer;
 use quick_xml::events::Event;
 use quick_xml::name::QName;
@@ -26,6 +24,7 @@ pub enum BlockError {
 
 }
 
+/// Seek blocks using start and end chars.
 pub fn seek_block(input_str: &String, start: char, end: char) -> Result<Vec<(u64, u64)>, BlockError> {
 
     let mut start_index = 0; 

@@ -6,7 +6,6 @@ use json::misc::{
 };
 use serde::Deserialize;
 
-		//<card><name id="4ed/298">Black Mana Battery</name><set>4e</set></card>
 #[derive(Deserialize, Debug)]
 struct Deck<'a> {
     #[serde(rename = "@version")]
